@@ -53,7 +53,7 @@ Independents.each_pair do |basename, (filename, path, style, reason)|
         if style.has_template_link?
           link = style.template_link
 
-          expect(link).to match(%r{http[s]?://www.zotero.org/styles/([a-z-]+)})
+          expect(link).to match(%r{^http://www.zotero.org/styles/([a-z-]+)$})
           expect(Independents).to have_key(link[/[^\/]+$/])
         end
       end

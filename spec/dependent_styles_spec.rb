@@ -58,7 +58,7 @@ Dependents.each_pair do |basename, (filename, path, style, reason)|
       it '"independent-parent" link must point to an existing independent style' do
         link = style.independent_parent_link
 
-        expect(link).to match(%r{http[s]?://www.zotero.org/styles/([a-z-]+)})
+        expect(link).to match(%r{^http://www.zotero.org/styles/([a-z-]+)$})
         expect(Independents).to have_key(link[/[^\/]+$/])
       end
 
