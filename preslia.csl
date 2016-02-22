@@ -58,20 +58,6 @@
       </substitute>
     </names>
   </macro>
-  <macro name="access">
-    <group>
-      <text term="retrieved" text-case="capitalize-first" suffix=" "/>
-      <date variable="accessed" suffix=", ">
-        <date-part name="month" suffix=" "/>
-        <date-part name="day" suffix=", "/>
-        <date-part name="year"/>
-      </date>
-      <group>
-        <text term="from" suffix=" "/>
-        <text variable="URL"/>
-      </group>
-    </group>
-  </macro>
   <macro name="title">
     <choose>
       <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
@@ -100,7 +86,7 @@
           <date-part name="year"/>
         </date>
         <group>
-          <label strip-periods="true" suffix="." variable="locator" form="short"/>
+          <label variable="locator" form="short"/>
           <text variable="locator" prefix=" "/>
         </group>
       </group>
@@ -131,7 +117,7 @@
             <text term="in" text-case="capitalize-first"/>
             <names variable="editor translator" prefix=" " suffix="," delimiter=", ">
               <name and="symbol" initialize-with="." name-as-sort-order="all"/>
-              <label form="short" strip-periods="true" prefix=" (" suffix=".)"/>
+              <label form="short" prefix=" (" suffix=")"/>
             </names>
             <text variable="container-title" font-style="normal" prefix=" " suffix=","/>
             <group prefix=" " suffix=".">
@@ -145,9 +131,9 @@
           </group>
         </else-if>
         <else-if type="article-journal">
-          <group suffix=". ">
-            <text macro="title" prefix=" "/>
-            <text macro="editor-translator" prefix=" "/>
+          <group suffix=". " prefix=" " delimiter=" ">
+            <text macro="title"/>
+            <text macro="editor-translator"/>
           </group>
           <choose>
             <if variable="issue">
@@ -163,9 +149,9 @@
           </choose>
         </else-if>
         <else>
-          <group suffix=". ">
-            <text macro="title" prefix=" "/>
-            <text macro="editor-translator" prefix=" "/>
+          <group suffix=". " prefix=" " delimiter=" ">
+            <text macro="title"/>
+            <text macro="editor-translator"/>
           </group>
           <group delimiter=" " suffix=".">
             <text variable="container-title" font-style="italic" suffix="."/>
