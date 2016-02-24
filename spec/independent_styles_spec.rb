@@ -1,6 +1,6 @@
 Independents.each_pair do |basename, (filename, path, style, reason)|
 
-  describe "#{basename}" do
+  describe "#{basename}:" do
 
     it "must validate against the CSL 1.0.1 schema" do
       expect(CSL.validate(path)).to eq([])
@@ -31,11 +31,11 @@ Independents.each_pair do |basename, (filename, path, style, reason)|
         expect(style.info).to have_id
       end
 
-      it 'may only have a style ID of the form "http://www.zotero.org/styles/" + style file name (without ".csl" extension, e.g. "http://www.zotero.org/styles/apa")' do
+      it 'style ID must be of the form "http://www.zotero.org/styles/" + style file name (without ".csl" extension, e.g. "http://www.zotero.org/styles/apa")' do
         expect(style.id).to eq("http://www.zotero.org/styles/#{basename}")
       end
 
-      it 'may not have a "self" link that differs from the style ID' do
+      it '"self" link must match the style ID' do
         if style.has_self_link?
           expect(style.id).to eq(style.self_link)
         end
@@ -49,7 +49,7 @@ Independents.each_pair do |basename, (filename, path, style, reason)|
         expect(style).to be_default_license
       end
 
-      it 'may only have a "template" link that points to an existing independent style' do
+      it '"template" link must point to an existing independent style' do
         if style.has_template_link?
           parent_ID_link = style.template_link
           link_prefix = "http://www.zotero.org/styles/"
